@@ -1,0 +1,17 @@
+docker:
+  registry: docker.localhub.com
+# imagePullSecrets:
+# - name: docker-secret
+
+deployment:
+  replicas: 1
+  affinity: {}
+  nodeSelector: {}
+  tolerations: []
+  strategy: {}
+  resources: {}
+
+monitoring:
+  prometheus:
+    enable: false
+    scrapeInterval: 60s

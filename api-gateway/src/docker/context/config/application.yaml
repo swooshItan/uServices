@@ -1,0 +1,76 @@
+##### spring specific properties
+spring:
+    application:
+        name: @project.name@
+    cloud:
+        gateway:
+            routes:
+                - id: mgmt-ui
+                  uri: http://mgmt-ui:80
+                  predicates:
+                    - Path=/mgmt-ui/**
+                  filters:
+                    - StripPrefix=1
+                    - TokenRelay
+                    - RemoveRequestHeader=Cookie
+                - id: customer-service
+                  uri: http://customer:8090
+                  predicates:
+                    - Path=/customers/**
+                  filters:
+                    - TokenRelay
+                    - RemoveRequestHeader=Cookie
+                - id: account-service
+                  uri: http://account:8080
+                  predicates:
+                    - Path=/accounts/**
+                  filters:
+                    - TokenRelay
+                    - RemoveRequestHeader=Cookie
+    lifecycle:
+        timeout-per-shutdown-phase: 20s
+    security:
+        oauth2:
+            client:
+                provider:
+                    keycloak:
+                        issuer-uri: http://192.168.99.100:30666/auth/realms/webrealm
+                        token-uri: http://192.168.99.100:30666/auth/realms/webrealm/protocol/openid-connect/token
+                        authorization-uri: http://192.168.99.100:30666/auth/realms/webrealm/protocol/openid-connect/auth
+                        userinfo-uri: http://192.168.99.100:30666/auth/realms/webrealm/protocol/openid-connect/userinfo
+                        user-name-attribute: preferred_username
+                registration:
+                    webclient:
+                        provider: keycloak
+                        client-id: webclient
+                        client-secret: secret
+                        authorization-grant-type: authorization_code
+                        redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+
+server:
+    port: 8070
+    shutdown: graceful
+
+logging:
+    config: "config/logback-spring.xml"
+
+management:
+#   port: 8081
+    endpoints:
+        enabled-by-default: false
+        web:
+            exposure:
+                include: "prometheus,health"
+    endpoint:
+        prometheus:
+            enabled: true
+        health:
+            enabled: true
+    metrics:
+        export:
+            prometheus:
+                enabled: true
+
+##### app specific properties
+logout:
+    redirectUri: "/mgmt-ui/index.html"

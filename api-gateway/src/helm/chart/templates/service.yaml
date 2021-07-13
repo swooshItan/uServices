@@ -1,0 +1,22 @@
+#@formatter:off
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ .Chart.Name }}
+    version: {{ .Chart.Version }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    release: {{ .Release.Name }}
+spec:
+  sessionAffinity: None
+  type: NodePort
+  selector:
+    app: {{ .Chart.Name }}
+    release: {{ .Release.Name }}
+  ports:
+  - name: http
+    protocol: TCP
+    port: 8070
+    targetPort: 8070
+    nodePort: 30777
