@@ -1,0 +1,12 @@
+#@formatter:off
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ .Chart.Name }}
+    version: {{ .Chart.Version }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    release: {{ .Release.Name }}
+data:
+{{ tpl ((.Files.Glob "config/*").AsConfig) . | indent 2 }}

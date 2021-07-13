@@ -1,0 +1,10 @@
+<form *ngIf="showAddCustomer" class="add-form" (ngSubmit)="onSubmit()">
+    <div class="form-control">
+        <label for="text">Add Customer</label>
+        <input type="text" name="name"
+            [(ngModel)]="name" 
+            id="name" placeholder="Customer Name"/>
+    </div>
+    <input type="submit" value="Save Customer"
+        class="btn btn-block"/>
+</form>

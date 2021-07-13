@@ -1,0 +1,14 @@
+<div [ngClass]="{ select: select }" class="customer"
+     (dblclick)="selectCustomer()">
+    <h4>
+        id: {{ customer.id }} <br>
+        name: {{ customer.name }}
+    </h4>
+    <div align="right">
+        <app-button 
+            color='darkgray' 
+            text='Delete' 
+            (btnClick)="deleteCustomer(customer)">
+        </app-button>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+docker:
+  registry: docker.localhub.com
+# imagePullSecrets:
+# - name: docker-secret
+
+deployment:
+  replicas: 1
+  affinity: {}
+  nodeSelector: {}
+  tolerations: []
+  strategy: {}
+  resources: {}
+
+kube:
+  serviceType: ClusterIP

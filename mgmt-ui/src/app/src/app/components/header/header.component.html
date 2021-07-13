@@ -1,0 +1,8 @@
+<header>
+    <h1>{{ title }}</h1>
+    <app-button 
+        color="{{ showAddCustomer ? 'lightgray' : 'darkgray'}}"
+        text="{{ showAddCustomer ? 'Close' : 'Add'}}" 
+        (btnClick)="toggleAddCustomer()">
+    </app-button>
+</header>

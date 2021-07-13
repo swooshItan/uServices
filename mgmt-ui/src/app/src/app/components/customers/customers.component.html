@@ -1,0 +1,12 @@
+<div class="container">
+    <app-header></app-header>
+    <app-add-customer
+        (onAddCustomer)="addCustomer($event)">
+    </app-add-customer>
+    <label for="text">Customer List</label>
+    <app-customer-item 
+        *ngFor="let customer of customers"
+        [customer]="customer"
+        (onDeleteCustomer)="deleteCustomer(customer)">
+    </app-customer-item>
+</div>
