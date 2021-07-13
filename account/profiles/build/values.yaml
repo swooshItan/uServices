@@ -1,0 +1,6 @@
+serviceClient:
+  customerService:
+    baseUrl: 'http://@local-ip@:18090'
+
+kube:
+  serviceType: NodePort

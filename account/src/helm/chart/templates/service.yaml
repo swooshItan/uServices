@@ -1,0 +1,24 @@
+#@formatter:off
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ .Chart.Name }}
+    version: {{ .Chart.Version }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    release: {{ .Release.Name }}
+spec:
+  sessionAffinity: None
+  type: {{ .Values.kube.serviceType }}
+  selector:
+    app: {{ .Chart.Name }}
+    release: {{ .Release.Name }}
+  ports:
+  - name: http
+    protocol: TCP
+    port: 8080
+    targetPort: 8080
+{{- if eq .Values.kube.serviceType "NodePort" }}
+    nodePort: 30888
+{{- end }}

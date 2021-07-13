@@ -1,0 +1,6 @@
+serviceClient:
+  customerService:
+    baseUrl: 'http://customer:8090'
+
+kube:
+  serviceType: ClusterIP
