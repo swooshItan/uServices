@@ -1,0 +1,18 @@
+docker:
+  registry: docker.io
+  image: jboss/keycloak
+# imagePullSecrets:
+# - name: docker-secret
+
+deployment:
+  replicas: 1
+  affinity: {}
+  nodeSelector: {}
+  tolerations: []
+  strategy: {}
+  resources: {}
+
+keycloak:
+  admin:
+    user: admin
+    password: admin1234
