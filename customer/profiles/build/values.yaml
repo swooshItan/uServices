@@ -1,0 +1,6 @@
+security:
+  jwt:
+    jwkSetUri: 'http://@local-ip@:14001/auth/test/certs'
+
+kube:
+  serviceType: NodePort

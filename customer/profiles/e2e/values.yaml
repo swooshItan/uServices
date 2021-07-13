@@ -1,0 +1,6 @@
+security:
+  jwt:
+    jwkSetUri: 'http://keycloak:8080/auth/realms/webrealm/protocol/openid-connect/certs'
+
+kube:
+  serviceType: ClusterIP

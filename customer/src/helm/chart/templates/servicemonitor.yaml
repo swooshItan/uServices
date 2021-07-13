@@ -1,0 +1,24 @@
+# https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/user-guides/getting-started.md
+{{- if .Values.monitoring.prometheus.enable }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ .Chart.Name }}
+    version: {{ .Chart.Version }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    release: {{ .Release.Name }}
+  namespace: monitoring
+spec:
+  endpoints:
+    - port: metrics
+      path: /actuator/prometheus
+      interval: {{ .Values.monitoring.prometheus.scrapeInterval }}
+  namespaceSelector:
+    matchNames:
+      - default
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+{{- end }}
