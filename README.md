@@ -3,11 +3,20 @@ This repository contains 5 applications. The purpose of this repository is to pr
 
 A brief description and information on the corresponding opensource frameworks, libraries and languages used for each application are indicated below.
 
-  * customer - provides REST APIs for CRUD functions for customer information (needs to be authenticated)
+  * customer - provides REST APIs for CRUD functions for customer information (needs to be authenticated). The data is stored in in-memory databse, H2.
+    Uses
+      * spring boot actuator/micrometer to provide endpoints for liveness/readiness check for kubernetes deployment, and endpoint for monitoring with prometheus compatible format.
+      * spring boot web for implement the REST controllers
+      * spring boot data jpa for implement the respository layer to store/retrieve the data in H2 in-memory db. 
+      * spring boot outh2 resource server for verify that all requests are authenticated with valid JWT token.
+      * spring cloud contract verifier to test and verify the REST API contracts with other application
+      * spring cloud sleuth for distributed tracing
+      * swagger annotations for generating json format file to document the REST APIs.
+      * junit, rest-assured for implement unit and integration tests
 
   * account - provides REST APIs for CRUD functions for account information.
 
-  * mgmt-ui - provide the UI of customer management to call customer REST APIs. 
+  * mgmt-ui - provide the UI of customer management to call customer REST APIs (needs to be authenticated). 
 
   * api-gateway - a proxy which all requests need to go to before forwarding to downstream applications. It handles the check if client is authenticated, and send the JWT token to downsteam applications.
 
