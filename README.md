@@ -3,7 +3,7 @@ This repository contains 5 applications. The purpose of this repository is to pr
 
 A brief description and information on the corresponding opensource frameworks, libraries and languages used for each application are indicated below.
 
-  * customer -
+  * customer - 
 
   * account
 
@@ -21,14 +21,31 @@ The high level interactions between these applications are as follows:-
 
   * client -> api-gateway/keycloak
 
-    All HTTP requests to mgmt-ui, account and customer applications would have to go through api-gateway first. api-gateway would check if client has been authenticated before forwarding the requests to downstream applications. If client has not been authenticated yet, client would be redirected to keycloak to display the login page for user to enter their credentials to login. After login is successful, client would be redirected back to the api-gateway before requests is further forwarded to mgmt-ui.
+    All HTTP requests to mgmt-ui, account and customer applications would have to go through api-gateway first. api-gateway would check if client has been authenticated before forwarding the requests to downstream applications. If client has not been authenticated yet, client would be redirected to keycloak to display the login page for user to enter their credentials to login. After login is successful, client would be redirected back to the api-gateway before requests is further forwarded to downstream applications.
     
   * api-gateway -> keycloak
 
+    After authentication is successfully done by keycloak, it would send a response to redirect the client back to api-gateway. api-gateway would use the information (authorization code, etc) provided by keycloak during the redirect to make a request to keycloak to get the access token (JWT). 
+
   * api-gateway -> mgmt-ui
+
+    After authentication is successful, api-gateway would forward requests to downstream application, mgmt-ui for the UI webpages, and other web related files.
 
   * api-gateway -> customer/account
 
+    After authentication is successful, api-gateway would forward requests to downstream application, customer/account for the REST API calls. This is triggered via the UI.
+    The JWT access token is passed to these applications from api-gateway.
+
   * customer -> keycloak
 
+    customer application can make a request to keycloak to request for the public key to verify the signature of the JWT token passed as part of the request header.
+
   * account -> customer
+
+    account application can make a REST API call to customer application. Currently, not working yet (work-in-progress) after adding security to customer application.
+    
+
+
+# Other factors to consider
+
+
