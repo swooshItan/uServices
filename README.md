@@ -3,21 +3,21 @@ This repository contains 5 applications. The purpose of this repository is to pr
 
 A brief description and information on the corresponding opensource frameworks, libraries and languages used for each application are indicated below.
 
-  * customer - 
+  * customer - provides REST APIs for CRUD functions for customer information (needs to be authenticated)
 
-  * account
+  * account - provides REST APIs for CRUD functions for account information.
 
-  * mgmt-ui
+  * mgmt-ui - provide the UI of customer management to call customer REST APIs. 
 
-  * api-gateway
+  * api-gateway - a proxy which all requests need to go to before forwarding to downstream applications. It handles the check if client is authenticated, and send the JWT token to downsteam applications.
 
-  * keycloak
+  * keycloak - handles the authentication and other IAM related functions.
 
+
+# Request Flows
 The high level interactions between these applications are as follows:-
 
 ![image](https://user-images.githubusercontent.com/36339970/125591091-0e66235b-1e31-4b05-ad6c-b3670f14f85c.png)
-
-# Request Flows
 
   * client -> api-gateway/keycloak
 
@@ -46,6 +46,6 @@ The high level interactions between these applications are as follows:-
     
 
 
-# Other factors to consider
+# Pending
 
 
