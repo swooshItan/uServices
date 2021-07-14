@@ -20,7 +20,8 @@ The high level interactions between these applications are as follows:-
 # Request Flows
 
   * client -> api-gateway/keycloak
-    All HTTP requests to mgmt-ui, account and customer applications would have to go through api-gateway first. api-gateway would check if client has been authenticated before forwarding the requests to downstream applications. If client has not been authenticated yet, client would be redirected to keycloak to display the login page for user to enter their credentials to login. After login is successful, client would be redirected back to the api-gateway before requests is further forwarded to mgmt-ui.
+
+All HTTP requests to mgmt-ui, account and customer applications would have to go through api-gateway first. api-gateway would check if client has been authenticated before forwarding the requests to downstream applications. If client has not been authenticated yet, client would be redirected to keycloak to display the login page for user to enter their credentials to login. After login is successful, client would be redirected back to the api-gateway before requests is further forwarded to mgmt-ui.
     
   * api-gateway -> keycloak
 
