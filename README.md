@@ -4,6 +4,7 @@ This repository contains 5 applications. The purpose of this repository is to pr
 A brief description and information on the corresponding opensource frameworks, libraries and languages used for each application are indicated below.
 
   * customer - provides REST APIs for CRUD functions for customer information (needs to be authenticated). The data is stored in in-memory databse, H2.
+    
     Uses
       * spring boot actuator/micrometer to provide endpoints for liveness/readiness check for kubernetes deployment, and endpoint for monitoring with prometheus compatible format.
       * spring boot web for implement the REST controllers
