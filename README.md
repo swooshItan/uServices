@@ -4,8 +4,6 @@ This repository contains 5 applications. This repository provides a simple refer
 A brief description and information on the corresponding opensource frameworks, libraries and languages used for each application are indicated below.
 
   * customer - provides REST APIs for CRUD functions for customer information (needs to be authenticated). The data is stored in in-memory database, H2.
-    
-    Uses
       * spring-boot-actuator/micrometer to provide endpoints for liveness/readiness checks for kubernetes deployment, and endpoint for monitoring with prometheus compatible format.
       * spring-boot-web for implement the REST controllers
       * spring-boot-data-jpa for implement the respository layer to store/retrieve the data in in-memory db, H2. 
@@ -16,8 +14,6 @@ A brief description and information on the corresponding opensource frameworks, 
       * junit, rest-assured for implement unit and integration tests
 
   * account - provides REST APIs for CRUD functions for account information. The data is stored in in-memory database, H2.
-
-    Uses
       * spring-boot-actuator/micrometer to provide endpoints for liveness/readiness checks for kubernetes deployment, and endpoint for monitoring with prometheus compatible format.
       * spring-boot-web for implement the REST controllers
       * spring-boot-data-jpa for implement the respository layer to store/retrieve the data in in-memory db, H2.
@@ -29,8 +25,6 @@ A brief description and information on the corresponding opensource frameworks, 
       * junit, rest-assured for implement unit and integration tests
 
   * api-gateway - a proxy which all requests need to go to before forwarding to downstream applications. It handles the check if client is authenticated, and send the JWT token to downsteam applications.
-
-    Uses
       * spring-boot-actuator/micrometer to provide endpoints for liveness/readiness checks for kubernetes deployment, and endpoint for monitoring with prometheus compatible format.
 
   * mgmt-ui - provide the UI of customer management to call customer REST APIs (needs to be authenticated). Simple web application using angularJS.      
