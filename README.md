@@ -1,28 +1,41 @@
 # Overview
-This repository contains 5 applications. The purpose of this repository is to provide a simple reference on the development of cloud-native applications using opensource frameworks such as Spring Framework, Spring Boot and Spring Cloud, deployed as docker containers managed in kubernetes platform.
+This repository contains 5 applications. This repository provides a simple reference on the development of cloud-native applications using opensource frameworks such as Spring Framework, Spring Boot and Spring Cloud, deployed as docker containers managed in kubernetes platform.
 
 A brief description and information on the corresponding opensource frameworks, libraries and languages used for each application are indicated below.
 
-  * customer - provides REST APIs for CRUD functions for customer information (needs to be authenticated). The data is stored in in-memory databse, H2.
+  * customer - provides REST APIs for CRUD functions for customer information (needs to be authenticated). The data is stored in in-memory database, H2.
     
     Uses
-      * spring boot actuator/micrometer to provide endpoints for liveness/readiness check for kubernetes deployment, and endpoint for monitoring with prometheus compatible format.
-      * spring boot web for implement the REST controllers
-      * spring boot data jpa for implement the respository layer to store/retrieve the data in H2 in-memory db. 
-      * spring boot outh2 resource server for verify that all requests are authenticated with valid JWT token.
-      * spring cloud contract verifier to test and verify the REST API contracts with other application
-      * spring cloud sleuth for distributed tracing
-      * swagger annotations for generating json format file to document the REST APIs.
+      * spring-boot-actuator/micrometer to provide endpoints for liveness/readiness checks for kubernetes deployment, and endpoint for monitoring with prometheus compatible format.
+      * spring-boot-web for implement the REST controllers
+      * spring-boot-data-jpa for implement the respository layer to store/retrieve the data in in-memory db, H2. 
+      * spring-boot-outh2-resource-server for verify that all requests are authenticated with valid JWT token.
+      * spring-cloud-contract-verifier to test and verify the REST API contracts as a producer for account application
+      * spring-cloud-sleuth for distributed tracing
+      * swagger-annotations for generating swagger json format file to document the REST APIs.
       * junit, rest-assured for implement unit and integration tests
 
-  * account - provides REST APIs for CRUD functions for account information.
+  * account - provides REST APIs for CRUD functions for account information. The data is stored in in-memory database, H2.
 
-  * mgmt-ui - provide the UI of customer management to call customer REST APIs (needs to be authenticated). 
+    Uses
+      * spring-boot-actuator/micrometer to provide endpoints for liveness/readiness checks for kubernetes deployment, and endpoint for monitoring with prometheus compatible format.
+      * spring-boot-web for implement the REST controllers
+      * spring-boot-data-jpa for implement the respository layer to store/retrieve the data in in-memory db, H2.
+      * spring-boot-outh2-resource-server for verify that all requests are authenticated with valid JWT token. (pending)
+      * spring-cloud-contract-verifier to test and verify the REST API contracts as a consumer of customer application
+      * spring-cloud-sleuth for distributed tracing
+      * spring-cloud-circuitbreaker used when making REST API call to customer application
+      * swagger-annotations for generating swagger json format file to document the REST APIs.
+      * junit, rest-assured for implement unit and integration tests
 
   * api-gateway - a proxy which all requests need to go to before forwarding to downstream applications. It handles the check if client is authenticated, and send the JWT token to downsteam applications.
 
-  * keycloak - handles the authentication and other IAM related functions.
+    Uses
+      * spring-boot-actuator/micrometer to provide endpoints for liveness/readiness checks for kubernetes deployment, and endpoint for monitoring with prometheus compatible format.
 
+  * mgmt-ui - provide the UI of customer management to call customer REST APIs (needs to be authenticated). Simple web application using angularJS.      
+
+  * keycloak - handles the authentication and other IAM related functions. Uses keycloak with in-memory database from a docker image published in dockerhub.
 
 # Request Flows
 The high level interactions between these applications are as follows:-
@@ -55,7 +68,7 @@ The high level interactions between these applications are as follows:-
     account application can make a REST API call to customer application. Currently, not working yet (work-in-progress) after adding security to customer application.
     
 
-
 # Pending
-
+- handle CSRF
+- add sec to account app. whether propagate token to downstream customer app or using grant-type = client_credentials?
 
