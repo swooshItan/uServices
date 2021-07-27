@@ -26,7 +26,7 @@ A brief description and information on the corresponding opensource frameworks, 
 
   * api-gateway - a proxy which all requests need to go to before forwarding to downstream applications. It handles the check if client is authenticated, and send the JWT token to downsteam applications.
       * spring-boot-starter-oauth2-client/spring-cloud-starter-security for verify that all requests are authenticated. Redirects to login via keycloak if not authenticated yet.
-      * spring-cloud-starter-gateway for api-gateway routes mechanism to downstream application, etc.
+      * spring-cloud-starter-gateway for api-gateway routes mechanism to downstream applications, etc.
 
   * mgmt-ui - provide the UI of customer management to call customer REST APIs (needs to be authenticated). Simple web application using angularJS.      
 
