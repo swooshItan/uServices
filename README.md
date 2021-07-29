@@ -62,10 +62,3 @@ The high level interactions between these applications are as follows:-
 
     account application can make a REST API call to customer application. Currently, not working yet (work-in-progress) after adding security to customer application.
     
-
-# Pending
-- handle CSRF
-- add sec to account app. whether propagate token to downstream customer app or using grant-type = client_credentials?
-- add spring-boot-actuator/micrometer for api-gateway to provide endpoints for liveness/readiness checks and for monitoring with prometheus compatible format.
-
-
