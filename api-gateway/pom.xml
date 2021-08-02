@@ -33,18 +33,29 @@
 	</dependencyManagement>
 
 	<dependencies>
-        <dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-oauth2-client</artifactId>
-		</dependency>
 		<dependency>
 		    <groupId>org.springframework.cloud</groupId>
 		    <artifactId>spring-cloud-starter-gateway</artifactId>
 		</dependency>
+
 		<dependency>
 		    <groupId>org.springframework.cloud</groupId>
 		    <artifactId>spring-cloud-starter-security</artifactId>
 		</dependency>
+        <dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-oauth2-client</artifactId>
+		</dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -82,6 +93,9 @@
                         </goals>
                         <configuration>
                             <outputDirectory>${project.build.directory}/docker</outputDirectory>
+                            <filters>
+								<filter>${project.basedir}/filters/docker.properties</filter>
+                            </filters>
                             <resources>
                                 <resource>
                                     <directory>${project.basedir}/src/docker</directory>
@@ -114,6 +128,9 @@
                         </goals>
                         <configuration>
                             <outputDirectory>${project.build.directory}/chart/${project.artifactId}-${project.version}/config</outputDirectory>
+                            <filters>
+								<filter>${project.basedir}/filters/helm.properties</filter>
+                            </filters>
                             <resources>
                                 <resource>
                                     <directory>${project.basedir}/src/docker/context/config</directory>

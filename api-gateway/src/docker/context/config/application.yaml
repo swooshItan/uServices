@@ -6,7 +6,7 @@ spring:
         gateway:
             routes:
                 - id: mgmt-ui
-                  uri: http://mgmt-ui:80
+                  uri: @mgmtUi.baseUrl@
                   predicates:
                     - Path=/mgmt-ui/**
                   filters:
@@ -14,14 +14,14 @@ spring:
                     - TokenRelay
                     - RemoveRequestHeader=Cookie
                 - id: customer-service
-                  uri: http://customer:8090
+                  uri: @customerService.baseUrl@
                   predicates:
                     - Path=/customers/**
                   filters:
                     - TokenRelay
                     - RemoveRequestHeader=Cookie
                 - id: account-service
-                  uri: http://account:8080
+                  uri: @accountService.baseUrl@
                   predicates:
                     - Path=/accounts/**
                   filters:
@@ -34,10 +34,10 @@ spring:
             client:
                 provider:
                     keycloak:
-                        issuer-uri: http://192.168.99.100:30666/auth/realms/webrealm
-                        token-uri: http://192.168.99.100:30666/auth/realms/webrealm/protocol/openid-connect/token
-                        authorization-uri: http://192.168.99.100:30666/auth/realms/webrealm/protocol/openid-connect/auth
-                        userinfo-uri: http://192.168.99.100:30666/auth/realms/webrealm/protocol/openid-connect/userinfo
+                        issuer-uri: @keycloak.baseUrl@/auth/realms/webrealm
+                        token-uri: @keycloak.baseUrl@/auth/realms/webrealm/protocol/openid-connect/token
+                        authorization-uri: @keycloak.baseUrl@/auth/realms/webrealm/protocol/openid-connect/auth
+                        userinfo-uri: @keycloak.baseUrl@/auth/realms/webrealm/protocol/openid-connect/userinfo
                         user-name-attribute: preferred_username
                 registration:
                     webclient:

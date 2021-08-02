@@ -15,3 +15,13 @@ monitoring:
   prometheus:
     enable: false
     scrapeInterval: 60s
+
+services:
+  mgmtUi:
+    baseUrl: 'http://mgmt-ui:80'
+  customerService:
+    baseUrl: 'http://customer:8090'
+  accountService:
+    baseUrl: 'http://account:8080'
+  keycloak:
+    baseUrl: 'http://192.168.99.100:30666'
