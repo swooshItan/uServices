@@ -34,8 +34,8 @@ public class CustomerMgmtIntegrationTest {
         RestAssured.baseURI = "http://" + testProps.getProperty("customerService.host");
 
     	// init and start mock server
-        int jwkSetUriPort = Integer.parseInt(testProps.getProperty("jwkSetUri.port"));
-        String jwkSetUriUri = testProps.getProperty("jwkSetUri.uri");
+        int jwkSetUriPort = Integer.parseInt(testProps.getProperty("jwkSetUriMock.port"));
+        String jwkSetUriUri = testProps.getProperty("jwkSetUriMock.uri");
 
     	helper = new JwtHelper();
     	helper.initAndStartJwkSetUriServer(jwkSetUriPort, jwkSetUriUri);

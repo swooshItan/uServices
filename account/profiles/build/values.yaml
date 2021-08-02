@@ -1,3 +1,7 @@
+security:
+  jwt:
+    jwkSetUri: 'http://@local-ip@:14001/auth/test/certs'
+
 serviceClient:
   customerService:
     baseUrl: 'http://@local-ip@:18090'

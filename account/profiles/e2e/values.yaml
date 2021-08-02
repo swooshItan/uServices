@@ -1,3 +1,7 @@
+security:
+  jwt:
+    jwkSetUri: 'http://keycloak:8080/auth/realms/webrealm/protocol/openid-connect/certs'
+
 serviceClient:
   customerService:
     baseUrl: 'http://customer:8090'
