@@ -17,16 +17,17 @@ A brief description and information on the corresponding opensource frameworks, 
       * spring-boot-starter-actuator/micrometer-registry-prometheus to provide endpoints for liveness/readiness checks for kubernetes deployment, and endpoint for monitoring with prometheus compatible format.
       * spring-boot-starter-web for implement the REST controllers
       * spring-boot-starter-data-jpa for implement the respository layer to store/retrieve the data in in-memory db, H2.
-      * spring-boot-starter-outh2-resource-server for verify that all requests are authenticated with valid JWT token. (pending)
+      * spring-boot-starter-outh2-resource-server for verify that all requests are authenticated with valid JWT token
       * spring-cloud-starter-contract-stub-runner for test and verify the REST API contracts as a consumer of customer application
       * spring-cloud-starter-sleuth for distributed tracing
-      * spring-cloud-starter-circuitbreaker-reactor-resilience4j used when making REST API call to customer application
+      * spring-cloud-starter-circuitbreaker-reactor-resilience4j for circuit breaker and timeout functions when making REST API call to customer application
       * swagger-annotations for generating swagger json format file to document the REST APIs.
       * junit, rest-assured for implement unit and integration tests
 
   * api-gateway - a proxy which all requests need to go to before forwarding to downstream applications. It handles the check if client is authenticated, and send the JWT token to downsteam applications.
-      * spring-boot-starter-oauth2-client/spring-cloud-starter-security for verify that all requests are authenticated. Redirects to login via keycloak if not authenticated yet.
       * spring-cloud-starter-gateway for api-gateway routes mechanism to downstream applications, etc.
+      * spring-boot-starter-actuator/micrometer-registry-prometheus to provide endpoints for liveness/readiness checks for kubernetes deployment, and endpoint for monitoring with prometheus compatible format.
+      * spring-boot-starter-oauth2-client/spring-cloud-starter-security for verify that all requests are authenticated. Redirects to login via keycloak if not authenticated yet.
 
   * mgmt-ui - provide the UI of customer management to call customer REST APIs (needs to be authenticated). Simple web application using angularJS.      
 
@@ -61,4 +62,23 @@ The high level interactions between these applications are as follows:-
   * account -> customer
 
     account application can make a REST API call to customer application. Currently, not working yet (work-in-progress) after adding security to customer application.
-    
+
+
+# Deploy the applications in Kubernetes
+## Pre-requisites
+  * install minikube
+  * install kubectl
+  * install helm
+  * install docker
+
+## Deploy applications
+  * maven clean install for account
+  * maven clean install for customer
+  * maven clean install for mgmt0ui
+  * maven clean install for keycloak
+  * maven clean install for api-gateway (deployment may fail until webrealm is created in keycloak)
+
+## Setup in keycloak
+  * create a realm with name "webrealm"
+  * create a client with name "webclient"
+  * create a user with name "webuser"
