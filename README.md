@@ -48,20 +48,20 @@ The high level interactions between these applications are as follows:-
 
   * api-gateway -> mgmt-ui
 
-    After authentication is successful, api-gateway would forward requests to downstream application, mgmt-ui for the UI webpages, and other web related files.
+    After authentication is successful, api-gateway can forward requests to downstream application, mgmt-ui for the UI webpages, and other web related files.
 
   * api-gateway -> customer/account
 
-    After authentication is successful, api-gateway would forward requests to downstream application, customer/account for the REST API calls. This is triggered via the UI.
+    After authentication is successful, api-gateway can forward requests to downstream application, customer/account for the REST API calls. This is triggered via the UI from mgmt-ui application.
     The JWT access token is passed to these applications from api-gateway.
 
-  * customer -> keycloak
+  * customer/account -> keycloak
 
-    customer application can make a request to keycloak to request for the public key to verify the signature of the JWT token passed as part of the request header.
+    customer and account applications can make a request to keycloak to request for the public key to verify the signature of the JWT token passed as part of the request header.
 
   * account -> customer
 
-    account application can make a REST API call to customer application. Currently, not working yet (work-in-progress) after adding security to customer application.
+    account application can make a REST API call to customer application. The JWT passed to account application is propagated to customer application when making the REST API call.
 
 
 # Deploy the applications in Kubernetes
