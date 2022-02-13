@@ -64,6 +64,14 @@ The high level interactions between these applications are as follows:-
     account application can make a REST API call to customer application. The JWT passed to account application is propagated to customer application when making the REST API call.
 
 
+# Project structure (in-progress)
+## Using maven profiles
+
+## Dockerfile
+
+## Helm
+
+
 # Deploy the applications in Kubernetes
 ## Pre-requisites
   * install minikube
