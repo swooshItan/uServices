@@ -64,8 +64,22 @@ The high level interactions between these applications are as follows:-
     account application can make a REST API call to customer application. The JWT passed to account application is propagated to customer application when making the REST API call.
 
 
-# Project structure (in-progress)
-## Using maven profiles
+# Project Structure (in-progress)
+Some of the common functionalities for a cloud native application may include
+  * Monitoring
+  * Distributed Tracing
+  * Logging
+  
+For API Producer application
+  * JWT Verifier
+  * OpenAPI/Swagger Documentation
+  * Contract Verifier
+
+For API Consumer application
+  * Resilency For API Call
+  * Contract Verifier
+
+## Using Maven Profiles
 
 ## Dockerfile
 
